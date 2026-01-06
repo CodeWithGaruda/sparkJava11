@@ -2,6 +2,7 @@ package com.rayala.chapter10_pairRdds;
 
 import com.google.common.collect.Iterables;
 import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -63,10 +64,10 @@ public class PairRDDsTest {
             final var lines = sparkContext.textFile(testFilePath);
             System.out.printf("Total lines in file %d%n", lines.count());
 
-            final var pairRDD = lines.mapToPair(line -> new Tuple2<>(line.length(), 1L));
+            JavaPairRDD<Integer, Long> pairRDD = lines.mapToPair(line -> new Tuple2<>(line.length(), 1L));
             assertEquals(lines.count(), pairRDD.count());
 
-            final var counts = pairRDD.groupByKey();
+            JavaPairRDD<Integer, Iterable<Long>> counts = pairRDD.groupByKey();
             counts.take(5).forEach(tuple ->
                     System.out.printf("Total strings of length %d are %d%n",
                             tuple._1, Iterables.size(tuple._2)));
@@ -91,7 +92,10 @@ public class PairRDDsTest {
             uniqueWordsPairs.take(5).forEach(tuple ->
                     System.out.println(tuple._1));
 
+            System.out.println("--------------------number of unique words are : "+uniqueWordsPairs.count());
+            uniqueWordsPairs.collect().forEach(System.out::println);
             System.out.println("--------------------");
+
         }
     }
 
