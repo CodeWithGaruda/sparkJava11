@@ -117,59 +117,59 @@ public class RDDClosuresAccumulatorsTest {
         }
     }
 
-//    @Test
-//    @DisplayName("Test Stock Position accumulator in Spark RDD")
-//    void testStockPositionAccumulatorInSparkRDD() {
-//        try (final var sparkContext = new JavaSparkContext(sparkConf)) {
-//            final var securityId = "AAPL";
-//            final var applePositionAccumulator = new StockPositionAccumulator(securityId);
-//            sparkContext.sc().register(applePositionAccumulator, "applePositionAcc");
-//            assertTrue(applePositionAccumulator.name().nonEmpty());
-//            assertEquals("applePositionAcc", applePositionAccumulator.name().get());
-//
-//            final var trade1 = new Trade("AAPL", 1000L, 50D, 100, Side.BUY);
-//            final var trade2 = new Trade("META", 2000L, 90D, 200, Side.SHORT_SELL);
-//            final var trade3 = new Trade("AAPL", 3000L, 51D, 100, Side.BUY);
-//            final var trade4 = new Trade("AAPL", 4000L, 52D, 200, Side.SELL);
-//            final var trade5 = new Trade("META", 5000L, 80D, 200, Side.BUY);
-//            final var trade6 = new Trade("TSLA", 6000L, 100D, 300, Side.BUY);
-//
-//            // for AAPL,
-//            // trade1=> 50 * 100 = 5000, position=100, profit=-5000
-//            // trade3=> 51 * 100 = 5100, position=100+100 =200, profit=-5000+(-5100) = -10100
-//            // trade4=> 52 * 200 = 10400, position=200-200 =0, profit=-10100+10400 = 300
-//
-//            final var trades1 = List.of(trade1, trade2, trade3);
-//            final var trades2 = List.of(trade4, trade5, trade6);
-//
-//            final var stockPosition1 = new StockPosition(securityId);
-//            stockPosition1.addTrades(trades1);
-//
-//            final var stockPosition2 = new StockPosition(securityId);
-//            stockPosition2.addTrades(trades2);
-//
-//            final var appleStockPositions = List.of(stockPosition1, stockPosition2);
-//
-//            final var myRdd = sparkContext.parallelize(appleStockPositions);
-//            myRdd.foreach(applePositionAccumulator::add);
-//
-//            assertFalse(applePositionAccumulator.isZero());
-//            assertEquals(2L, applePositionAccumulator.count());
-//
-//            // Only the driver program can read the accumulator’s value, using its value() method
-//            assertTrue(applePositionAccumulator.isAtDriverSide());
-//            final var accumulatorValue = applePositionAccumulator.value();
-//            assertNotNull(accumulatorValue);
-//
-//            assertEquals(securityId, accumulatorValue.getSecurityId());
-//            assertEquals(3, accumulatorValue.getTrades().size());
-//            assertEquals(0D, accumulatorValue.getPosition());
-//            assertEquals(300D, accumulatorValue.getProfit());
-//
-//            applePositionAccumulator.reset();
-//            assertTrue(applePositionAccumulator.isZero());
-//        }
-//    }
+    @Test
+    @DisplayName("Test Stock Position accumulator in Spark RDD")
+    void testStockPositionAccumulatorInSparkRDD() {
+        try (final var sparkContext = new JavaSparkContext(sparkConf)) {
+            final var securityId = "AAPL";
+            final var applePositionAccumulator = new StockPositionAccumulator(securityId);
+            sparkContext.sc().register(applePositionAccumulator, "applePositionAcc");
+            assertTrue(applePositionAccumulator.name().nonEmpty());
+            assertEquals("applePositionAcc", applePositionAccumulator.name().get());
+
+            final var trade1 = new Trade("AAPL", 1000L, 50D, 100, Side.BUY);
+            final var trade2 = new Trade("META", 2000L, 90D, 200, Side.SHORT_SELL);
+            final var trade3 = new Trade("AAPL", 3000L, 51D, 100, Side.BUY);
+            final var trade4 = new Trade("AAPL", 4000L, 52D, 200, Side.SELL);
+            final var trade5 = new Trade("META", 5000L, 80D, 200, Side.BUY);
+            final var trade6 = new Trade("TSLA", 6000L, 100D, 300, Side.BUY);
+
+            // for AAPL,
+            // trade1=> 50 * 100 = 5000, position=100, profit=-5000
+            // trade3=> 51 * 100 = 5100, position=100+100 =200, profit=-5000+(-5100) = -10100
+            // trade4=> 52 * 200 = 10400, position=200-200 =0, profit=-10100+10400 = 300
+
+            final var trades1 = List.of(trade1, trade2, trade3);
+            final var trades2 = List.of(trade4, trade5, trade6);
+
+            final var stockPosition1 = new StockPosition(securityId);
+            stockPosition1.addTrades(trades1);
+
+            final var stockPosition2 = new StockPosition(securityId);
+            stockPosition2.addTrades(trades2);
+
+            final var appleStockPositions = List.of(stockPosition1, stockPosition2);
+
+            final var myRdd = sparkContext.parallelize(appleStockPositions);
+            myRdd.foreach(applePositionAccumulator::add);
+
+            assertFalse(applePositionAccumulator.isZero());
+            assertEquals(2L, applePositionAccumulator.count());
+
+            // Only the driver program can read the accumulator’s value, using its value() method
+            assertTrue(applePositionAccumulator.isAtDriverSide());
+            final var accumulatorValue = applePositionAccumulator.value();
+            assertNotNull(accumulatorValue);
+
+            assertEquals(securityId, accumulatorValue.getSecurityId());
+            assertEquals(3, accumulatorValue.getTrades().size());
+            assertEquals(0D, accumulatorValue.getPosition());
+            assertEquals(300D, accumulatorValue.getProfit());
+
+            applePositionAccumulator.reset();
+            assertTrue(applePositionAccumulator.isZero());
+        }
+    }
 
     @Test
     @DisplayName("Test Long accumulator lazy evaluation in Spark RDD")
