@@ -209,13 +209,13 @@
             </plugin>
         </plugins>
     </build>
-<!--    <reporting>-->
-<!--        <plugins>-->
-<!--&lt;!&ndash;            <plugin>&ndash;&gt;-->
-<!--&lt;!&ndash;                <groupId>org.apache.maven.plugins</groupId>&ndash;&gt;-->
-<!--&lt;!&ndash;                <artifactId>maven-surefire-report-plugin</artifactId>&ndash;&gt;-->
-<!--&lt;!&ndash;                <version>2.22.0</version>&ndash;&gt;-->
-<!--&lt;!&ndash;            </plugin>&ndash;&gt;-->
-<!--        </plugins>-->
-<!--    </reporting>-->
+    <!--    <reporting>-->
+    <!--        <plugins>-->
+    <!--&lt;!&ndash;            <plugin>&ndash;&gt;-->
+    <!--&lt;!&ndash;                <groupId>org.apache.maven.plugins</groupId>&ndash;&gt;-->
+    <!--&lt;!&ndash;                <artifactId>maven-surefire-report-plugin</artifactId>&ndash;&gt;-->
+    <!--&lt;!&ndash;                <version>2.22.0</version>&ndash;&gt;-->
+    <!--&lt;!&ndash;            </plugin>&ndash;&gt;-->
+    <!--        </plugins>-->
+    <!--    </reporting>-->
 </project>

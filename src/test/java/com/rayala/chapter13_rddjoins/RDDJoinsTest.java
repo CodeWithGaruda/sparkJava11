@@ -122,7 +122,7 @@ public class RDDJoinsTest {
     @Test
     @DisplayName("Test Cartesian Join in Spark RDD")
     void testCartesianJoinInSparkRDD() {
-        final var cartesianJoinRdd = customersPairs.cartesian(billsPairs);
+        JavaPairRDD<Tuple2<Integer, String>, Tuple2<Integer, Double>> cartesianJoinRdd = customersPairs.cartesian(billsPairs);
 
         cartesianJoinRdd.collect().forEach(System.out::println);
         System.out.println("--------------------");
