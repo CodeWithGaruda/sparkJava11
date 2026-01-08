@@ -16,6 +16,7 @@ public class ColumnFunctions {
                 column("department")
         ).show();
     }
+
     static void exprExample(Dataset<Row> emp) {
         System.out.println("exprExample:");
 
@@ -28,6 +29,7 @@ public class ColumnFunctions {
         emp.select(expr("upper(name)")).show();
 
     }
+
     static void litExample(Dataset<Row> emp) {
         System.out.println("litExample:");
         emp.withColumn("country", lit("India"))
@@ -36,6 +38,7 @@ public class ColumnFunctions {
         emp.withColumn("is_active", lit(true)).show();
 
     }
+
     static void stringFunctions(Dataset<Row> emp) {
         System.out.println("String Functions:");
 
@@ -56,6 +59,7 @@ public class ColumnFunctions {
 
 
     }
+
     static void whenOtherwiseExample(Dataset<Row> emp) {
         System.out.println("whenOtherwiseExample:");
         emp.withColumn(
@@ -65,6 +69,7 @@ public class ColumnFunctions {
                         .otherwise("LOW")
         ).show();
     }
+
     static void arithmeticExample(Dataset<Row> emp) {
         System.out.println("arithmeticExample:");
         emp.withColumn("double_salary", col("salary").multiply(2))
