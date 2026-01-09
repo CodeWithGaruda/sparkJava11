@@ -1,0 +1,8 @@
+emp_id,name,department,salary,city,joining_date
+1,Amit,IT,50000,hyd,2021-01-10
+2,Sunny,IT,65000,kmm,2020-03-15
+3,Priya,HR,55000,vij,2019-07-20
+4,Rahul,Finance,70000,spt,2018-11-01
+5,Neha,HR,60000,kmm,2022-06-05
+6,Eagle,,90000,hyd,2017-09-09
+7,Hunter,IT,,kmm,

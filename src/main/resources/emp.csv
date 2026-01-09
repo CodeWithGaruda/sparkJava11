@@ -1,0 +1,8 @@
+emp_id,name,dept_id,salary,city
+1,Amit,10,50000,hyd
+2,Sunny,10,65000,kmm
+3,Priya,20,55000,vij
+4,Rahul,30,70000,spt
+5,Neha,20,60000,kmm
+6,Eagle,,90000,hyd
+7,Hunter,10,,kmm
