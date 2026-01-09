@@ -4,6 +4,9 @@ target/
 !**/src/test/**/target/
 .kotlin
 
+metastore_db/
+derby.log
+
 ### IntelliJ IDEA ###
 .idea/modules.xml
 .idea/jarRepositories.xml
