@@ -5,7 +5,12 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
 public class HiveTableExamples {
-
+    /*
+    before you run this program you should clear metastore_db, derby.log
+    and also c:/spark-warehouse/<anyfiles>
+    as this is for learning purpose
+    in production you have to do some extra things manually so that you wont run into issues
+     */
     public static void main(String[] args) {
 
         SparkSession spark = SparkSession.builder()
@@ -32,7 +37,7 @@ public class HiveTableExamples {
 
     /**
      * Creates a HIVE MANAGED table.
-     *
+     * <p>
      * - Hive owns the data
      * - Data is stored inside spark-warehouse
      * - Dropping table deletes data
@@ -52,7 +57,7 @@ public class HiveTableExamples {
 
     /**
      * Creates a HIVE EXTERNAL table.
-     *
+     * <p>
      * - Hive does NOT own the data
      * - Data stored at custom location
      * - Dropping table keeps data
